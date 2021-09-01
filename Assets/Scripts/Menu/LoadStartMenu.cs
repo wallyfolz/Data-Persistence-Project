@@ -34,7 +34,7 @@ public class LoadStartMenu : MonoBehaviour
     }
 
     [System.Serializable]
-    class SaveData
+    public class SaveData
     {
         public string publicHighPlayer;
         public int publicHighScore;
@@ -48,13 +48,14 @@ public class LoadStartMenu : MonoBehaviour
         string json = JsonUtility.ToJson(data);
 
         Debug.Log(json);
+        Debug.Log(Application.persistentDataPath);
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json",json);
+        File.WriteAllText(Application.persistentDataPath + "/savefile2.json",json);
     }
 
     public void LoadHighScore()
     {
-        string path = Application.persistentDataPath + "savefile.json";
+        string path = Application.persistentDataPath + "/savefile2.json";
         if(File.Exists(path))
         {
             string json = File.ReadAllText(path);
