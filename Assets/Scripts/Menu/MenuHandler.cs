@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
+//using System.IO;
 
 public class MenuHandler : MonoBehaviour
 {
@@ -20,6 +20,8 @@ public class MenuHandler : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+/*
 
   [System.Serializable]
     class SaveData
@@ -51,5 +53,7 @@ public class MenuHandler : MonoBehaviour
             publicHighScore = data.publicHighScore;
         }
     }
+
+*/
 
 }

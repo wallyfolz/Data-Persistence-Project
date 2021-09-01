@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -18,10 +20,7 @@ public class LoadStartMenu : MonoBehaviour
 
     public void EditName()
     {
-      //inputField = GameObject.Find("Player Name Input Field").InputField;
       MenuHandler.Instance.playerName = inputField.text;
-      //playerName = inputField.text;
-      //textDisplay.GetComponent<Text>().text = "Welcome " + playerName;
       inputField.text = "";
     }
 
@@ -33,5 +32,38 @@ public class LoadStartMenu : MonoBehaviour
         Application.Quit();
     #endif
     }
+
+    [System.Serializable]
+    class SaveData
+    {
+        public string publicHighPlayer;
+        public int publicHighScore;
+    }
+    public void SaveHighScore()
+    {
+        SaveData data = new SaveData();
+        data.publicHighPlayer = MenuHandler.Instance.publicHighPlayer;
+        data.publicHighScore = MenuHandler.Instance.publicHighScore;
+
+        string json = JsonUtility.ToJson(data);
+
+        Debug.Log(json);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json",json);
+    }
+
+    public void LoadHighScore()
+    {
+        string path = Application.persistentDataPath + "savefile.json";
+        if(File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            MenuHandler.Instance.publicHighPlayer = data.publicHighPlayer;
+            MenuHandler.Instance.publicHighScore = data.publicHighScore;
+        }
+    }
+
 
 }
