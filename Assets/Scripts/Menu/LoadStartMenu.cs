@@ -22,6 +22,7 @@ public class LoadStartMenu : MonoBehaviour
     {
       MenuHandler.Instance.playerName = inputField.text;
       inputField.text = "";
+      GameObject.Find("Player Name").GetComponent<Text>().text = "Welcome " + MenuHandler.Instance.playerName;
     }
 
     public void Exit()
@@ -50,12 +51,12 @@ public class LoadStartMenu : MonoBehaviour
         Debug.Log(json);
         Debug.Log(Application.persistentDataPath);
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile2.json",json);
+        File.WriteAllText(Application.persistentDataPath + "/savefile3.json",json);
     }
 
     public void LoadHighScore()
     {
-        string path = Application.persistentDataPath + "/savefile2.json";
+        string path = Application.persistentDataPath + "/savefile3.json";
         if(File.Exists(path))
         {
             string json = File.ReadAllText(path);

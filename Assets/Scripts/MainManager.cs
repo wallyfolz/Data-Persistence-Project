@@ -36,9 +36,9 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
-        currentPlayerName.text = MenuHandler.Instance.playerName;
+        currentPlayerName.text = "Now playing: " + MenuHandler.Instance.playerName;
         Debug.Log("CurrPlayer: " + MenuHandler.Instance.playerName);
-        HighScoreText.text = "Best Score : " + MenuHandler.Instance.playerName + " : " + MenuHandler.Instance.publicHighScore;
+        HighScoreText.text = "Best Score : " + MenuHandler.Instance.publicHighPlayer + " : " + MenuHandler.Instance.publicHighScore;
 
     }
 
